@@ -1,0 +1,91 @@
+﻿@model TimesheetSystem.ViewModels.ProjectTasksViewModel
+
+@{
+
+}
+
+<h2>Project Tasks</h2>
+<h3>Project Details</h3>
+<hr />
+
+<div class="row">
+    <div class="col-md-3">@Html.LabelFor(model => model.Project.ProjectName):</div>
+    <div class="col-md-3">@Html.DisplayFor(model => model.Project.ProjectName)</div>
+    <div class="col-md-3">@Html.LabelFor(model => model.Project.ProjectDateStarted):</div>
+    <div class="col-md-3">@Html.DisplayFor(model => model.Project.ProjectDateStarted)</div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">@Html.LabelFor(model => model.Project.ProjectStatus):</div>
+    <div class="col-md-3">@Html.DisplayFor(model => model.Project.ProjectStatus)</div>
+    <div class="col-md-3">@Html.LabelFor(model => model.Project.EstimatedProjectDateEnd):</div>
+    <div class="col-md-3">@Html.DisplayFor(model => model.Project.EstimatedProjectDateEnd)</div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">@Html.LabelFor(model => model.Project.ProjectType):</div>
+    <div class="col-md-3">@Html.DisplayFor(model => model.Project.ProjectType)</div>
+    <div class="col-md-3">@Html.LabelFor(model => model.Project.EstimatedDuration):</div>
+    <div class="col-md-3">@Html.DisplayFor(model => model.Project.EstimatedDuration)</div>
+</div>
+
+<div class="row">
+    <div class="col-md-3">@Html.LabelFor(model => model.Project.TotalDuration):</div>
+    <div class="col-md-3">@Html.DisplayFor(model => model.Project.TotalDuration)</div>
+</div>
+
+<hr />
+<h3>Tasks List</h3>
+@Html.ActionLink("Add New Task", "Create")
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Tasks.SingleOrDefault().TasksName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tasks.SingleOrDefault().TasksStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tasks.SingleOrDefault().TaskType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tasks.SingleOrDefault().TaskStartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tasks.SingleOrDefault().EstimatedTaskDateEnd)
+        </th>
+        <th>
+            Options
+        </th>
+    </tr>
+
+    <tr>
+        @foreach (var task in Model.Tasks)
+        {
+            <td>
+                @Html.DisplayFor(modelItem => task.TasksName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => task.TasksStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => task.TaskType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => task.TaskStartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => task.EstimatedTaskDateEnd)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=task.TasksId }) |
+                @Html.ActionLink("Details", "Details", new { id=task.TasksId }) |
+                @Html.ActionLink("Delete", "Delete", new { id=task.TasksId })
+            </td>
+        }
+
+    </tr>
+
+
+</table>

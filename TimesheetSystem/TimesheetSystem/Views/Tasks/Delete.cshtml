@@ -1,0 +1,80 @@
+﻿@model TimesheetSystem.DAL.Models.Tasks
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Tasks</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Project.ProjectName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Project.ProjectName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TasksName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TasksName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TaskType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaskType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TaskStartDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaskStartDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EstimatedTaskDateEnd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EstimatedTaskDateEnd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TaskDuration)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TaskDuration)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TasksStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TasksStatus)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

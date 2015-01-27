@@ -8,15 +8,10 @@ namespace TimesheetSystem.DAL
 {
     public class UnitOfWork : IDisposable
     {
-        private ApplicationDbContext context;
+        private ApplicationDbContext context = new ApplicationDbContext();
         private ProjectRepository projectRepository;
         private TasksRepository tasksRepository;
         private TimeLogRepository timeLogRepository;
-
-        public UnitOfWork(ApplicationDbContext _context )
-        {
-            this.context = _context;
-        }
 
         public ProjectRepository ProjectRepository 
         {
@@ -24,7 +19,7 @@ namespace TimesheetSystem.DAL
             { 
                 if(projectRepository == null)
                 {
-                    this.projectRepository = new ProjectRepository();
+                    this.projectRepository = new ProjectRepository(context);
                 }
                 return this.projectRepository;
             }
@@ -36,7 +31,7 @@ namespace TimesheetSystem.DAL
             {
                 if (tasksRepository == null)
                 {
-                    this.tasksRepository = new TasksRepository();
+                    this.tasksRepository = new TasksRepository(context);
                 }
                 return this.tasksRepository;
             }
@@ -48,7 +43,7 @@ namespace TimesheetSystem.DAL
             {
                 if (timeLogRepository == null)
                 {
-                    this.timeLogRepository = new TimeLogRepository();
+                    this.timeLogRepository = new TimeLogRepository(context);
                 }
                 return this.timeLogRepository;
             }

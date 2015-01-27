@@ -31,7 +31,7 @@ namespace TimesheetSystem.DAL.Repositories
             context.Project.Add(_project);
         }
 
-        public void EditProject(Project _project)
+        public void UpdateProject(Project _project)
         {
             context.Entry(_project).State = EntityState.Modified;
         }

@@ -36,7 +36,7 @@ namespace TimesheetSystem.DAL.Repositories
             context.Tasks.Add(_tasks);
         }
 
-        public void EditTask(Tasks _tasks)
+        public void UpdateTask(Tasks _tasks)
         {
             context.Entry(_tasks).State = EntityState.Modified;
         }

@@ -36,7 +36,7 @@ namespace TimesheetSystem.DAL.Repositories
             context.TimeLog.Add(_timeLog);
         }
 
-        public void EditTimeLog(TimeLog _timeLog)
+        public void UpdateTimeLog(TimeLog _timeLog)
         {
             context.Entry(_timeLog).State = EntityState.Modified;
         }
