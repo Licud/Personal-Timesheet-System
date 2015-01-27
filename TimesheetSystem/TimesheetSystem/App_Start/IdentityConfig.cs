@@ -11,6 +11,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using TimesheetSystem.Models;
+using TimesheetSystem.DAL.Models;
+using TimesheetSystem.DAL;
 
 namespace TimesheetSystem
 {

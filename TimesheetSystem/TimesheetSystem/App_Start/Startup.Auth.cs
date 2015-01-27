@@ -6,6 +6,8 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using TimesheetSystem.Models;
+using TimesheetSystem.DAL.Models;
+using TimesheetSystem.DAL;
 
 namespace TimesheetSystem
 {
