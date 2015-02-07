@@ -1,0 +1,72 @@
+﻿@model TimesheetSystem.ViewModels.TasksLogViewModel
+
+@{
+    
+}
+
+<h2>Task Time Logs</h2>
+<h3>Task Details</h3>
+<hr />
+
+<div class="row">
+    <div class="col-md-3 col-sm-3">@Html.LabelFor(model => model.Task.TasksName):</div>
+    <div class="col-md-3 col-sm-3">@Html.DisplayFor(model => model.Task.TasksName)</div>
+    <div class="col-md-3 col-sm-3">@Html.LabelFor(model => model.Task.TaskStartDate):</div>
+    <div class="col-md-3 col-sm-3">@Html.DisplayFor(model => model.Task.TaskStartDate)</div>
+</div>
+
+<div class="row">
+    <div class="col-md-3 col-sm-3">@Html.LabelFor(model => model.Task.TasksStatus):</div>
+    <div class="col-md-3 col-sm-3">@Html.DisplayFor(model => model.Task.TasksStatus)</div>
+    <div class="col-md-3 col-sm-3">@Html.LabelFor(model => model.Task.EstimatedTaskDateEnd):</div>
+    <div class="col-md-3 col-sm-3">@Html.DisplayFor(model => model.Task.EstimatedTaskDateEnd)</div>
+</div>
+
+<div class="row">
+    <div class="col-md-3 col-sm-3">@Html.LabelFor(model => model.Task.TaskType):</div>
+    <div class="col-md-3 col-sm-3">@Html.DisplayFor(model => model.Task.TaskType)</div>
+    <div class="col-md-3 col-sm-3">@Html.LabelFor(model => model.Task.TaskDuration):</div>
+    <div class="col-md-3 col-sm-3">@Html.DisplayFor(model => model.Task.TaskDuration)</div>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-10 col-sm-9 col-xs-7">
+        <h3>Time Log List</h3>
+    </div>
+    <div class="col-md-2 col-sm-3 col-xs-5 top-pad">
+        @Html.ActionLink("Add New Time Log", "Create", new { id = Model.Task.TasksId }, new { @class = "btn btn-primary btn-block" })
+    </div>
+</div>
+
+<hr class="remove-top-margin" />
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+    @foreach (var timeLog in Model.TimeLogs)
+    {
+        int counter = 0;
+        string href = "href" + counter;
+        string id = "id" + counter;
+        <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="@id">
+                <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#@href" aria-expanded="true" aria-controls="@href">
+                        @timeLog.TimeLogDate
+                    </a>
+                </h4>
+            </div>
+            <div id="@href" class="panel-collapse collapse" role="tabpanel" aria-labelledby="@id">
+                <div class="panel-body">
+                    @timeLog.Comments
+                    <br /><br />
+                    @Html.ActionLink("Edit Log", "Edit", "TimeLogs", new { id = timeLog.TimeLogId }, null)
+                </div>
+            </div>
+        </div>
+
+        counter++;
+    }
+
+</div>

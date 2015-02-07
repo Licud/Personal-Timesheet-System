@@ -15,6 +15,7 @@ namespace TimesheetSystem.DAL.Models
         public string Comments { get; set; }
 
         [Display(Name = "Log Date")]
+        [DataType(DataType.Date)]
         public DateTime TimeLogDate { get; set; }
 
         [Display(Name = "Work Duration")]

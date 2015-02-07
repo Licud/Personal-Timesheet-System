@@ -7,21 +7,25 @@ using System.Web;
 
 namespace TimesheetSystem.DAL.Models
 {
-    public class Project
+    public class Project: IValidatableObject
     {
         public int ProjectId { get; set; }
 
+        [Required]
         [Display(Name = "Project Name")]
         public string ProjectName { get; set; }
 
+        [Required]
         [Display(Name = "Project Type")]
         public string ProjectType { get; set; }
 
-        [Display(Name = "Start Date")]
+        [Required]
+        [Display(Name = "Project Start Date")]
         [DataType(DataType.Date)]
         public DateTime ProjectDateStarted { get; set; }
 
-        [Display(Name = "End Date")]
+        [Required]
+        [Display(Name = "Project End Date")]
         [DataType(DataType.Date)]
         public DateTime EstimatedProjectDateEnd { get; set; }
 
@@ -36,5 +40,17 @@ namespace TimesheetSystem.DAL.Models
 
         [ForeignKey("TasksId")]
         public virtual IEnumerable<Tasks> Tasks { get; set; }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            List<ValidationResult> res = new List<ValidationResult>();
+
+            if (EstimatedProjectDateEnd < ProjectDateStarted)
+            {
+                res.Add(new ValidationResult("The Project End Date must be greater than the Project Start Date"));
+            }
+
+            return res;
+        }
     }
 }

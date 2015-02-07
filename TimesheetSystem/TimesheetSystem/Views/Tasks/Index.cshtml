@@ -3,40 +3,46 @@
 @{
 
 }
-
 <h2>Project Tasks</h2>
 <h3>Project Details</h3>
 <hr />
 
 <div class="row">
-    <div class="col-md-3">@Html.LabelFor(model => model.Project.ProjectName):</div>
-    <div class="col-md-3">@Html.DisplayFor(model => model.Project.ProjectName)</div>
-    <div class="col-md-3">@Html.LabelFor(model => model.Project.ProjectDateStarted):</div>
-    <div class="col-md-3">@Html.DisplayFor(model => model.Project.ProjectDateStarted)</div>
+    <div class="col-md-3 col-sm-3">@Html.LabelFor(model => model.Project.ProjectName):</div>
+    <div class="col-md-3 col-sm-3">@Html.DisplayFor(model => model.Project.ProjectName)</div>
+    <div class="col-md-3 col-sm-3">@Html.LabelFor(model => model.Project.ProjectDateStarted):</div>
+    <div class="col-md-3 col-sm-3">@Html.DisplayFor(model => model.Project.ProjectDateStarted)</div>
 </div>
 
 <div class="row">
-    <div class="col-md-3">@Html.LabelFor(model => model.Project.ProjectStatus):</div>
-    <div class="col-md-3">@Html.DisplayFor(model => model.Project.ProjectStatus)</div>
-    <div class="col-md-3">@Html.LabelFor(model => model.Project.EstimatedProjectDateEnd):</div>
-    <div class="col-md-3">@Html.DisplayFor(model => model.Project.EstimatedProjectDateEnd)</div>
+    <div class="col-md-3 col-sm-3">@Html.LabelFor(model => model.Project.ProjectStatus):</div>
+    <div class="col-md-3 col-sm-3">@Html.DisplayFor(model => model.Project.ProjectStatus)</div>
+    <div class="col-md-3 col-sm-3">@Html.LabelFor(model => model.Project.EstimatedProjectDateEnd):</div>
+    <div class="col-md-3 col-sm-3">@Html.DisplayFor(model => model.Project.EstimatedProjectDateEnd)</div>
 </div>
 
 <div class="row">
-    <div class="col-md-3">@Html.LabelFor(model => model.Project.ProjectType):</div>
-    <div class="col-md-3">@Html.DisplayFor(model => model.Project.ProjectType)</div>
-    <div class="col-md-3">@Html.LabelFor(model => model.Project.EstimatedDuration):</div>
-    <div class="col-md-3">@Html.DisplayFor(model => model.Project.EstimatedDuration)</div>
+    <div class="col-md-3 col-sm-3">@Html.LabelFor(model => model.Project.ProjectType):</div>
+    <div class="col-md-3 col-sm-3">@Html.DisplayFor(model => model.Project.ProjectType)</div>
+    <div class="col-md-3 col-sm-3">@Html.LabelFor(model => model.Project.EstimatedDuration):</div>
+    <div class="col-md-3 col-sm-3">@Html.DisplayFor(model => model.Project.EstimatedDuration)</div>
 </div>
 
 <div class="row">
-    <div class="col-md-3">@Html.LabelFor(model => model.Project.TotalDuration):</div>
-    <div class="col-md-3">@Html.DisplayFor(model => model.Project.TotalDuration)</div>
+    <div class="col-md-3 col-sm-3">@Html.LabelFor(model => model.Project.TotalDuration):</div>
+    <div class="col-md-3 col-sm-3">@Html.DisplayFor(model => model.Project.TotalDuration)</div>
 </div>
 
 <hr />
-<h3>Tasks List</h3>
-@Html.ActionLink("Add New Task", "Create")
+
+<div class="row">
+    <div class="col-md-10 col-sm-9 col-xs-7">
+        <h3>Tasks List</h3>
+    </div>
+    <div class="col-md-2 col-sm-3 col-xs-5 top-pad">
+        @Html.ActionLink("Add New Task", "Create", new { id = Model.Project.ProjectId }, new { @class = "btn btn-primary btn-block"})
+    </div>
+</div>
 
 <table class="table">
     <tr>
@@ -60,11 +66,12 @@
         </th>
     </tr>
 
-    <tr>
-        @foreach (var task in Model.Tasks)
-        {
+    
+    @foreach (var task in Model.Tasks)
+    {
+        <tr>
             <td>
-                @Html.DisplayFor(modelItem => task.TasksName)
+                @Html.ActionLink(task.TasksName, "Index", "TimeLogs", new { id = task.TasksId}, null)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => task.TasksStatus)
@@ -79,13 +86,12 @@
                 @Html.DisplayFor(modelItem => task.EstimatedTaskDateEnd)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id=task.TasksId }) |
-                @Html.ActionLink("Details", "Details", new { id=task.TasksId }) |
-                @Html.ActionLink("Delete", "Delete", new { id=task.TasksId })
+                @Html.ActionLink("Add Log", "Create", "TimeLogs", new { id = task.TasksId }, null) |
+                @Html.ActionLink("Edit", "Edit", new { id = task.TasksId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = task.TasksId })
             </td>
-        }
-
-    </tr>
+        </tr>
+    }      
 
 
 </table>

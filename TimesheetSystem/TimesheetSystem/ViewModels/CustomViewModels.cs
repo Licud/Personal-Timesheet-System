@@ -14,4 +14,13 @@ namespace TimesheetSystem.ViewModels
 
         public IEnumerable<Tasks> Tasks { get; set; }
     }
+
+    public class TasksLogViewModel
+    {
+        [Required]
+        public Tasks Task { get; set; }
+
+        [Required]
+        public IEnumerable<TimeLog> TimeLogs { get; set; }
+    }
 }

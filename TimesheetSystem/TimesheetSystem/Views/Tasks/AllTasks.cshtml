@@ -1,0 +1,53 @@
+﻿@model IEnumerable<TimesheetSystem.DAL.Models.Tasks>
+@{
+    ViewBag.Title = "AllTasks";
+}
+
+<h2>All Tasks</h2>
+
+<table class="table table-striped">
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Project.ProjectName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TasksName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TasksStatus)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TaskType)
+        </th>
+        <th>
+            Options
+        </th>
+    </tr>
+
+    
+    @foreach (var task in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(t => task.Project.ProjectName)
+            </td>
+            <td>
+                @Html.DisplayFor(t => task.TasksName)
+            </td>
+            <td>
+                @Html.DisplayFor(t => task.TasksStatus)
+            </td>
+            <td>
+                @Html.DisplayFor(t => task.TaskType)
+            </td>
+            <td></td>
+        </tr>
+    }
+    
+
+
+
+
+
+</table>

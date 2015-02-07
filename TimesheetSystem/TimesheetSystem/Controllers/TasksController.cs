@@ -14,7 +14,6 @@ namespace TimesheetSystem.Controllers
 {
     public class TasksController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
         private UnitOfWork repositories = new UnitOfWork();
 
         
@@ -31,6 +30,11 @@ namespace TimesheetSystem.Controllers
             return View(projectTasks);
         }
 
+        public ActionResult AllTasks()
+        {
+            return View(repositories.TasksRepository.GetAllTasks());
+        }
+
         // GET: Tasks/Details/5
         public ActionResult Details(int? id)
         {
@@ -38,7 +42,7 @@ namespace TimesheetSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tasks tasks = db.Tasks.Find(id);
+            Tasks tasks = repositories.TasksRepository.GetTask(id.Value);
             if (tasks == null)
             {
                 return HttpNotFound();
@@ -47,10 +51,14 @@ namespace TimesheetSystem.Controllers
         }
 
         // GET: Tasks/Create
-        public ActionResult Create()
+        public ActionResult Create(int? id)
         {
-            ViewBag.ProjectId = new SelectList(db.Project, "ProjectId", "ProjectName");
-            return View();
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            return View(new Tasks() { ProjectId = id.Value });
         }
 
         // POST: Tasks/Create
@@ -58,16 +66,17 @@ namespace TimesheetSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TasksId,TasksName,TaskType,TaskStartDate,EstimatedTaskDateEnd,TaskDuration,TasksStatus,ProjectId")] Tasks tasks)
+        public ActionResult Create([Bind(Include = "TasksName,TaskType,TaskStartDate,EstimatedTaskDateEnd,TasksStatus,ProjectId")] Tasks tasks)
         {
             if (ModelState.IsValid)
             {
-                db.Tasks.Add(tasks);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                tasks.TasksStatus = "Ongoing";
+                tasks.TaskDuration = tasks.EstimatedTaskDateEnd.Subtract(tasks.TaskStartDate).Days;
+                repositories.TasksRepository.CreateTask(tasks);
+                repositories.SaveChanges();
+                return RedirectToAction("Index", new { id = tasks.ProjectId } );
             }
-
-            ViewBag.ProjectId = new SelectList(db.Project, "ProjectId", "ProjectName", tasks.ProjectId);
+        
             return View(tasks);
         }
 
@@ -78,12 +87,12 @@ namespace TimesheetSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tasks tasks = db.Tasks.Find(id);
+            Tasks tasks = repositories.TasksRepository.GetTask(id.Value);
             if (tasks == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.ProjectId = new SelectList(db.Project, "ProjectId", "ProjectName", tasks.ProjectId);
+
             return View(tasks);
         }
 
@@ -96,11 +105,12 @@ namespace TimesheetSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(tasks).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                repositories.TasksRepository.UpdateTask(tasks);
+                repositories.SaveChanges();
+                return RedirectToAction("Index", new { id = tasks.ProjectId });
             }
-            ViewBag.ProjectId = new SelectList(db.Project, "ProjectId", "ProjectName", tasks.ProjectId);
+            ViewBag.ProjectId = new SelectList(repositories.ProjectRepository.GetAllProjects() , "ProjectId", "ProjectName", tasks.ProjectId);
+
             return View(tasks);
         }
 
@@ -111,7 +121,7 @@ namespace TimesheetSystem.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Tasks tasks = db.Tasks.Find(id);
+            Tasks tasks = repositories.TasksRepository.GetTask(id.Value);
             if (tasks == null)
             {
                 return HttpNotFound();
@@ -124,17 +134,19 @@ namespace TimesheetSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Tasks tasks = db.Tasks.Find(id);
-            db.Tasks.Remove(tasks);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            int projectId = repositories.TasksRepository.GetTask(id).ProjectId;
+
+            repositories.TasksRepository.RemoveTask(id);
+            repositories.SaveChanges();
+
+            return RedirectToAction("Index", new { id = projectId });
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                repositories.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -18,7 +18,8 @@ namespace TimesheetSystem.DAL.Repositories
 
         public IEnumerable<Tasks> GetAllTasks()
         {
-            return context.Tasks.ToList();
+            var tasks = context.Tasks.Include(p => p.Project);
+            return tasks.ToList();
         }
 
         public IEnumerable<Tasks> GetAllTasksUnderProject(int id)

@@ -39,6 +39,16 @@ namespace TimesheetSystem.DAL.Repositories
         public void RemoveProject(int id)
         {
             Project projectToBeRemoved = context.Project.Find(id);
+
+            TasksRepository taskRepository = new TasksRepository(this.context);
+
+            List<Tasks> tasksToBeRemoved = context.Tasks.ToList();
+
+            foreach(var task in tasksToBeRemoved)
+            {
+                taskRepository.RemoveTask(task.TasksId);
+            }
+
             context.Project.Remove(projectToBeRemoved);
         }
     }

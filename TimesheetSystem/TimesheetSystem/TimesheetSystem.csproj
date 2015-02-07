@@ -158,11 +158,12 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\UpdateDates.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\TasksController.cs" />
+    <Compile Include="Controllers\TimeLogsController.cs" />
     <Compile Include="DAL\ApplicationDbContext.cs" />
     <Compile Include="DAL\Models\ApplicationUser.cs" />
     <Compile Include="DAL\Models\Project.cs" />
@@ -182,6 +183,22 @@
     <Compile Include="Migrations\201501270739166_timesheet_migration_v2.cs" />
     <Compile Include="Migrations\201501270739166_timesheet_migration_v2.Designer.cs">
       <DependentUpon>201501270739166_timesheet_migration_v2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501311733409_timesheet_migration_v21.cs" />
+    <Compile Include="Migrations\201501311733409_timesheet_migration_v21.Designer.cs">
+      <DependentUpon>201501311733409_timesheet_migration_v21.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501311820058_timesheet_migration_v3.cs" />
+    <Compile Include="Migrations\201501311820058_timesheet_migration_v3.Designer.cs">
+      <DependentUpon>201501311820058_timesheet_migration_v3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201501312119582_timesheet_database_v4.cs" />
+    <Compile Include="Migrations\201501312119582_timesheet_database_v4.Designer.cs">
+      <DependentUpon>201501312119582_timesheet_database_v4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201502070008576_timesheet_database_v5.cs" />
+    <Compile Include="Migrations\201502070008576_timesheet_database_v5.Designer.cs">
+      <DependentUpon>201502070008576_timesheet_database_v5.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
@@ -232,9 +249,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ForgotPassword.cshtml" />
@@ -258,6 +272,12 @@
     <Content Include="Views\Tasks\Details.cshtml" />
     <Content Include="Views\Tasks\Edit.cshtml" />
     <Content Include="Views\Tasks\Index.cshtml" />
+    <Content Include="Views\Tasks\AllTasks.cshtml" />
+    <Content Include="Views\TimeLogs\Create.cshtml" />
+    <Content Include="Views\TimeLogs\Delete.cshtml" />
+    <Content Include="Views\TimeLogs\Details.cshtml" />
+    <Content Include="Views\TimeLogs\Edit.cshtml" />
+    <Content Include="Views\TimeLogs\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -275,6 +295,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201501270739166_timesheet_migration_v2.resx">
       <DependentUpon>201501270739166_timesheet_migration_v2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501311733409_timesheet_migration_v21.resx">
+      <DependentUpon>201501311733409_timesheet_migration_v21.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501311820058_timesheet_migration_v3.resx">
+      <DependentUpon>201501311820058_timesheet_migration_v3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201501312119582_timesheet_database_v4.resx">
+      <DependentUpon>201501312119582_timesheet_database_v4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201502070008576_timesheet_database_v5.resx">
+      <DependentUpon>201502070008576_timesheet_database_v5.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

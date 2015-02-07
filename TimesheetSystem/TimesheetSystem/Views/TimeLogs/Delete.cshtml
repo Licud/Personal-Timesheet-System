@@ -1,0 +1,56 @@
+﻿@model TimesheetSystem.DAL.Models.TimeLog
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>TimeLog</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Task.TasksName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Task.TasksName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Comments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Comments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TimeLogDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TimeLogDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DurationWorked)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DurationWorked)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

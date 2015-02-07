@@ -18,7 +18,8 @@ namespace TimesheetSystem.DAL.Repositories
 
         public IEnumerable<TimeLog> GetAllTimeLogs()
         {
-            return context.TimeLog.ToList();
+            var logs = context.TimeLog.Include( t => t.Task);
+            return logs.ToList();
         }
 
         public IEnumerable<TimeLog> GetAllTimeLogsUnderTask(int id)
