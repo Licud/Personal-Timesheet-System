@@ -1,7 +1,8 @@
 ﻿@model TimesheetSystem.ViewModels.TasksLogViewModel
 
 @{
-    
+    ViewBag.Title = "Task TimeLogs";
+    int counter = 0;
 }
 
 <h2>Task Time Logs</h2>
@@ -46,7 +47,7 @@
 
     @foreach (var timeLog in Model.TimeLogs)
     {
-        int counter = 0;
+        
         string href = "href" + counter;
         string id = "id" + counter;
         <div class="panel panel-default">
@@ -61,7 +62,8 @@
                 <div class="panel-body">
                     @timeLog.Comments
                     <br /><br />
-                    @Html.ActionLink("Edit Log", "Edit", "TimeLogs", new { id = timeLog.TimeLogId }, null)
+                    @Html.ActionLink("Edit Log", "Edit", "TimeLogs", new { id = timeLog.TimeLogId }, null) | 
+                    @Html.ActionLink("Delete Log", "Delete", "TimeLogs", new { id = timeLog.TimeLogId }, null)
                 </div>
             </div>
         </div>

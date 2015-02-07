@@ -11,6 +11,7 @@ using TimesheetSystem.DAL.Models;
 
 namespace TimesheetSystem.Controllers
 {
+    [Authorize]
     public class ProjectsController : Controller
     {
         private UnitOfWork repositories = new UnitOfWork();

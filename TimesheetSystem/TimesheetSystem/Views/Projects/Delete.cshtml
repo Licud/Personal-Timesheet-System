@@ -1,80 +1,47 @@
 ﻿@model TimesheetSystem.DAL.Models.Project
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete Project";
 }
 
-<h2>Delete</h2>
+<h2>Delete Project</h2>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Are you sure you want to delete this project?</h3>
 <div>
-    <h4>Project</h4>
+
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.ProjectName)
-        </dt>
+    <div class="row">
+        <div class="col-md-3 col-sm-3">@Html.LabelFor(model => model.ProjectName):</div>
+        <div class="col-md-3 col-sm-3">@Html.DisplayFor(model => model.ProjectName)</div>
+        <div class="col-md-3 col-sm-3">@Html.LabelFor(model => model.ProjectDateStarted):</div>
+        <div class="col-md-3 col-sm-3">@Html.DisplayFor(model => model.ProjectDateStarted)</div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.ProjectName)
-        </dd>
+    <div class="row">
+        <div class="col-md-3 col-sm-3">@Html.LabelFor(model => model.ProjectStatus):</div>
+        <div class="col-md-3 col-sm-3">@Html.DisplayFor(model => model.ProjectStatus)</div>
+        <div class="col-md-3 col-sm-3">@Html.LabelFor(model => model.EstimatedProjectDateEnd):</div>
+        <div class="col-md-3 col-sm-3">@Html.DisplayFor(model => model.EstimatedProjectDateEnd)</div>
+    </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ProjectType)
-        </dt>
+    <div class="row">
+        <div class="col-md-3 col-sm-3">@Html.LabelFor(model => model.ProjectType):</div>
+        <div class="col-md-3 col-sm-3">@Html.DisplayFor(model => model.ProjectType)</div>
+        <div class="col-md-3 col-sm-3">@Html.LabelFor(model => model.EstimatedDuration):</div>
+        <div class="col-md-3 col-sm-3">@Html.DisplayFor(model => model.EstimatedDuration)</div>
+    </div>
 
-        <dd>
-            @Html.DisplayFor(model => model.ProjectType)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ProjectDateStarted)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProjectDateStarted)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EstimatedProjectDateEnd)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EstimatedProjectDateEnd)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.EstimatedDuration)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EstimatedDuration)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TotalDuration)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TotalDuration)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.ProjectStatus)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.ProjectStatus)
-        </dd>
-
-    </dl>
+    <div class="row">
+        <div class="col-md-3 col-sm-3">@Html.LabelFor(model => model.TotalDuration):</div>
+        <div class="col-md-3 col-sm-3">@Html.DisplayFor(model => model.TotalDuration)</div>
+    </div>
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+        <div class="form-actions no-color top-pad">
+            <input type="submit" value="Delete" class="btn btn-primary" />
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-primary" })
         </div>
     }
 </div>

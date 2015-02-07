@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<TimesheetSystem.DAL.Models.Tasks>
 @{
-    ViewBag.Title = "AllTasks";
+    ViewBag.Title = "All Tasks";
 }
 
 <h2>All Tasks</h2>
@@ -30,10 +30,11 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(t => task.Project.ProjectName)
+                @Html.ActionLink(task.Project.ProjectName, "Index", "Tasks", new { id = task.ProjectId }, null)
             </td>
             <td>
-                @Html.DisplayFor(t => task.TasksName)
+               
+                @Html.ActionLink(task.TasksName, "Index", "TimeLogs", new { id = task.TasksId }, null)
             </td>
             <td>
                 @Html.DisplayFor(t => task.TasksStatus)
@@ -41,7 +42,10 @@
             <td>
                 @Html.DisplayFor(t => task.TaskType)
             </td>
-            <td></td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = task.TasksId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = task.TasksId })
+            </td>
         </tr>
     }
     

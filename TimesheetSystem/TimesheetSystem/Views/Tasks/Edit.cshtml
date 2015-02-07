@@ -1,6 +1,7 @@
 ﻿@model TimesheetSystem.DAL.Models.Tasks
 
 @{
+    ViewBag.Title = "Edit Task";
     List<SelectListItem> items = new List<SelectListItem>();
 
     items.Add(new SelectListItem { Text = "Ongoing", Value = "Ongoing" });
@@ -72,15 +73,12 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-primary" />
+                @Html.ActionLink("Back to List", "Index", new { id = Model.ProjectId }, new { @class = "btn btn-primary" })
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index", new { id = Model.ProjectId })
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

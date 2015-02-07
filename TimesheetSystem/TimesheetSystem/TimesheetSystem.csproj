@@ -269,13 +269,11 @@
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Tasks\Create.cshtml" />
     <Content Include="Views\Tasks\Delete.cshtml" />
-    <Content Include="Views\Tasks\Details.cshtml" />
     <Content Include="Views\Tasks\Edit.cshtml" />
     <Content Include="Views\Tasks\Index.cshtml" />
     <Content Include="Views\Tasks\AllTasks.cshtml" />
     <Content Include="Views\TimeLogs\Create.cshtml" />
     <Content Include="Views\TimeLogs\Delete.cshtml" />
-    <Content Include="Views\TimeLogs\Details.cshtml" />
     <Content Include="Views\TimeLogs\Edit.cshtml" />
     <Content Include="Views\TimeLogs\Index.cshtml" />
   </ItemGroup>

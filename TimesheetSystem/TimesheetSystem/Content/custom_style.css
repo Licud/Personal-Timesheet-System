@@ -25,4 +25,8 @@ textarea {
 .remove-top-margin {
   margin-top: 0;
 }
+dd,
+dt {
+  padding-top: 15px;
+}
 /*# sourceMappingURL=custom_style.css.map */

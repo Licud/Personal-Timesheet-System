@@ -12,6 +12,7 @@ using TimesheetSystem.ViewModels;
 
 namespace TimesheetSystem.Controllers
 {
+    [Authorize]
     public class TasksController : Controller
     {
         private UnitOfWork repositories = new UnitOfWork();
@@ -33,21 +34,6 @@ namespace TimesheetSystem.Controllers
         public ActionResult AllTasks()
         {
             return View(repositories.TasksRepository.GetAllTasks());
-        }
-
-        // GET: Tasks/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Tasks tasks = repositories.TasksRepository.GetTask(id.Value);
-            if (tasks == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tasks);
         }
 
         // GET: Tasks/Create

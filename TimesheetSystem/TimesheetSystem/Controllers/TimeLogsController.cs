@@ -12,6 +12,7 @@ using TimesheetSystem.ViewModels;
 
 namespace TimesheetSystem.Controllers
 {
+    [Authorize]
     public class TimeLogsController : Controller
     {
         private UnitOfWork unitOfWork = new UnitOfWork();
@@ -33,21 +34,6 @@ namespace TimesheetSystem.Controllers
             IEnumerable<TimeLog> timeLogs = unitOfWork.TimeLogRepository.GetAllTimeLogsUnderTask(task.TasksId);
 
             return View(new TasksLogViewModel() { Task = task, TimeLogs = timeLogs});
-        }
-
-        // GET: TimeLogs/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            TimeLog timeLog = unitOfWork.TimeLogRepository.GetTimeLog(id.Value);
-            if (timeLog == null)
-            {
-                return HttpNotFound();
-            }
-            return View(timeLog);
         }
 
         // GET: TimeLogs/Create
@@ -99,7 +85,7 @@ namespace TimesheetSystem.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Comments,TimeLogDate,DurationWorked")] TimeLog timeLog)
+        public ActionResult Edit([Bind(Include = "TimeLogId,Comments,TimeLogDate,DurationWorked,TasksId")] TimeLog timeLog)
         {
             if (ModelState.IsValid)
             {
@@ -131,9 +117,10 @@ namespace TimesheetSystem.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
+            int taskId = unitOfWork.TimeLogRepository.GetTimeLog(id).TimeLogId;
             unitOfWork.TimeLogRepository.RemoveTimeLog(id);
             unitOfWork.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", "TimeLogs", new { id = taskId});
         }
 
         protected override void Dispose(bool disposing)
