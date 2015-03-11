@@ -5,53 +5,50 @@
 
 <h2>All Tasks</h2>
 
-<table class="table table-striped">
+<div class="table-responsive">
 
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Project.ProjectName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TasksName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TasksStatus)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TaskType)
-        </th>
-        <th>
-            Options
-        </th>
-    </tr>
+    <table class="table table-striped">
 
-    
-    @foreach (var task in Model)
-    {
         <tr>
-            <td>
-                @Html.ActionLink(task.Project.ProjectName, "Index", "Tasks", new { id = task.ProjectId }, null)
-            </td>
-            <td>
-               
-                @Html.ActionLink(task.TasksName, "Index", "TimeLogs", new { id = task.TasksId }, null)
-            </td>
-            <td>
-                @Html.DisplayFor(t => task.TasksStatus)
-            </td>
-            <td>
-                @Html.DisplayFor(t => task.TaskType)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = task.TasksId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = task.TasksId })
-            </td>
+            <th>
+                @Html.DisplayNameFor(model => model.Project.ProjectName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TasksName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TasksStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TaskType)
+            </th>
+            <th>
+                Options
+            </th>
         </tr>
-    }
-    
 
 
+        @foreach (var task in Model)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(task.Project.ProjectName, "Index", "Tasks", new { id = task.ProjectId }, null)
+                </td>
+                <td>
 
-
-
-</table>
+                    @Html.ActionLink(task.TasksName, "Index", "TimeLogs", new { id = task.TasksId }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(t => task.TasksStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(t => task.TaskType)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = task.TasksId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = task.TasksId })
+                </td>
+            </tr>
+        }
+    </table>
+</div>

@@ -9,52 +9,61 @@
         <h2>All Projects</h2>
     </div>
     <div class="col-md-3 col-sm-3 col-xs-5 top-pad">
-        @Html.ActionLink("Create New Project", "Create", null, new { @class = "btn btn-primary btn-block" })
+        @Html.ActionLink("Create New Project", "Create", null, new { @class = "btn btn-primary pull-right" })
     </div>
 </div>
 
-<table class="table table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.ProjectName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProjectDateStarted)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EstimatedProjectDateEnd)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.TotalDuration)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProjectStatus)
-        </th>
-        <th>Options</th>
-    </tr>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectDateStarted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EstimatedProjectDateEnd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalDuration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProjectStatus)
+            </th>
+            <th>Options</th>
+        </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.ActionLink(item.ProjectName, "Index", "Tasks", new { id = item.ProjectId }, null)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProjectDateStarted)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EstimatedProjectDateEnd)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TotalDuration) @(item.TotalDuration < 2 ? "Day" : "Days")
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProjectStatus)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProjectId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProjectId })
-        </td>
-    </tr>
+        @foreach (var item in Model)
+        {
+            <tr id="row-@item.ProjectId">
+                <td>
+                    @Html.ActionLink(item.ProjectName, "Index", "Tasks", new { id = item.ProjectId }, null)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProjectDateStarted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EstimatedProjectDateEnd)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TotalDuration) @(item.TotalDuration < 2 ? "Day" : "Days")
+                </td>
+                <td id="status-@item.ProjectId">
+                    @Html.DisplayFor(modelItem => item.ProjectStatus)
+                </td>
+                <td>
+                    <a href="#" class="change" data-type="2" data-id="@item.ProjectId">Status</a> |
+                    @Html.ActionLink("Edit", "Edit", new { id = item.ProjectId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.ProjectId })
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+@section scripts
+{
+    <script src="~/Scripts/custom-script.js"></script>
 }
-
-</table>

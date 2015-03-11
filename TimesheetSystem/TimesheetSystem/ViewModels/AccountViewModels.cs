@@ -65,6 +65,12 @@ namespace TimesheetSystem.Models
     public class RegisterViewModel
     {
         [Required]
+        public string Forename { get; set; }
+
+        [Required]
+        public string Surname { get; set; }
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -79,6 +85,7 @@ namespace TimesheetSystem.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
     }
 
     public class ResetPasswordViewModel

@@ -47,5 +47,6 @@ namespace TimesheetSystem.DAL.Repositories
             TimeLog logToBeRemoved = context.TimeLog.Find(id);
             context.TimeLog.Remove(logToBeRemoved);
         }
+
     }
 }

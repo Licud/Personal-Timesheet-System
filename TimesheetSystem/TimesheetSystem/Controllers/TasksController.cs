@@ -57,7 +57,7 @@ namespace TimesheetSystem.Controllers
             if (ModelState.IsValid)
             {
                 tasks.TasksStatus = "Ongoing";
-                tasks.TaskDuration = tasks.EstimatedTaskDateEnd.Subtract(tasks.TaskStartDate).Days;
+                tasks.TaskDuration = tasks.EstimatedTaskDateEnd.Subtract(tasks.TaskStartDate).Days + 1;
                 repositories.TasksRepository.CreateTask(tasks);
                 repositories.SaveChanges();
                 return RedirectToAction("Index", new { id = tasks.ProjectId } );
@@ -91,6 +91,7 @@ namespace TimesheetSystem.Controllers
         {
             if (ModelState.IsValid)
             {
+                tasks.TaskDuration = tasks.EstimatedTaskDateEnd.Subtract(tasks.TaskStartDate).Days + 1;
                 repositories.TasksRepository.UpdateTask(tasks);
                 repositories.SaveChanges();
                 return RedirectToAction("Index", new { id = tasks.ProjectId });
@@ -126,6 +127,25 @@ namespace TimesheetSystem.Controllers
             repositories.SaveChanges();
 
             return RedirectToAction("Index", new { id = projectId });
+        }
+
+        [HttpPost]
+        public JsonResult UpdateStatus(int id)
+        {
+            Tasks task = repositories.TasksRepository.GetTask(id);
+            if (task.TasksStatus == "Ongoing")
+            {
+                task.TasksStatus = "Finished";
+            }
+            else
+            {
+                task.TasksStatus = "Ongoing";
+            }
+
+            repositories.SaveChanges();
+            var result = new { identifier = task.TasksId, newStatus = task.TasksStatus };
+            
+            return Json(result);
         }
 
         protected override void Dispose(bool disposing)

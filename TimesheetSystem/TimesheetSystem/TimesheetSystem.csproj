@@ -158,7 +158,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="App_Start\UpdateDates.cs" />
+    <Compile Include="App_Start\UpdateDatabase.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
@@ -176,29 +176,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201501270735226_timesheet_migration_v1.cs" />
-    <Compile Include="Migrations\201501270735226_timesheet_migration_v1.Designer.cs">
-      <DependentUpon>201501270735226_timesheet_migration_v1.cs</DependentUpon>
+    <Compile Include="Migrations\201502072211308_timesheet_database_v1.cs" />
+    <Compile Include="Migrations\201502072211308_timesheet_database_v1.Designer.cs">
+      <DependentUpon>201502072211308_timesheet_database_v1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201501270739166_timesheet_migration_v2.cs" />
-    <Compile Include="Migrations\201501270739166_timesheet_migration_v2.Designer.cs">
-      <DependentUpon>201501270739166_timesheet_migration_v2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201501311733409_timesheet_migration_v21.cs" />
-    <Compile Include="Migrations\201501311733409_timesheet_migration_v21.Designer.cs">
-      <DependentUpon>201501311733409_timesheet_migration_v21.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201501311820058_timesheet_migration_v3.cs" />
-    <Compile Include="Migrations\201501311820058_timesheet_migration_v3.Designer.cs">
-      <DependentUpon>201501311820058_timesheet_migration_v3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201501312119582_timesheet_database_v4.cs" />
-    <Compile Include="Migrations\201501312119582_timesheet_database_v4.Designer.cs">
-      <DependentUpon>201501312119582_timesheet_database_v4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201502070008576_timesheet_database_v5.cs" />
-    <Compile Include="Migrations\201502070008576_timesheet_database_v5.Designer.cs">
-      <DependentUpon>201502070008576_timesheet_database_v5.cs</DependentUpon>
+    <Compile Include="Migrations\201502100006405_timesheet-database-v2.cs" />
+    <Compile Include="Migrations\201502100006405_timesheet-database-v2.Designer.cs">
+      <DependentUpon>201502100006405_timesheet-database-v2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ViewModels\AccountViewModels.cs" />
@@ -208,6 +192,58 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Antlr3.Runtime.dll" />
+    <Content Include="bin\Antlr3.Runtime.pdb" />
+    <Content Include="bin\EntityFramework.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.dll" />
+    <Content Include="bin\EntityFramework.SqlServer.xml" />
+    <Content Include="bin\EntityFramework.xml" />
+    <Content Include="bin\Microsoft.AspNet.Identity.Core.dll" />
+    <Content Include="bin\Microsoft.AspNet.Identity.Core.xml" />
+    <Content Include="bin\Microsoft.AspNet.Identity.EntityFramework.dll" />
+    <Content Include="bin\Microsoft.AspNet.Identity.EntityFramework.xml" />
+    <Content Include="bin\Microsoft.AspNet.Identity.Owin.dll" />
+    <Content Include="bin\Microsoft.AspNet.Identity.Owin.xml" />
+    <Content Include="bin\Microsoft.Owin.dll" />
+    <Content Include="bin\Microsoft.Owin.Host.SystemWeb.dll" />
+    <Content Include="bin\Microsoft.Owin.Host.SystemWeb.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.Cookies.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Cookies.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Facebook.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Facebook.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.Google.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Google.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.MicrosoftAccount.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.MicrosoftAccount.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.OAuth.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.OAuth.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.Twitter.dll" />
+    <Content Include="bin\Microsoft.Owin.Security.Twitter.xml" />
+    <Content Include="bin\Microsoft.Owin.Security.xml" />
+    <Content Include="bin\Microsoft.Owin.xml" />
+    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Newtonsoft.Json.dll" />
+    <Content Include="bin\Newtonsoft.Json.xml" />
+    <Content Include="bin\Owin.dll" />
+    <Content Include="bin\System.Web.Helpers.dll" />
+    <Content Include="bin\System.Web.Helpers.xml" />
+    <Content Include="bin\System.Web.Mvc.dll" />
+    <Content Include="bin\System.Web.Mvc.xml" />
+    <Content Include="bin\System.Web.Optimization.dll" />
+    <Content Include="bin\System.Web.Optimization.xml" />
+    <Content Include="bin\System.Web.Razor.dll" />
+    <Content Include="bin\System.Web.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.Deployment.dll" />
+    <Content Include="bin\System.Web.WebPages.Deployment.xml" />
+    <Content Include="bin\System.Web.WebPages.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.dll" />
+    <Content Include="bin\System.Web.WebPages.Razor.xml" />
+    <Content Include="bin\System.Web.WebPages.xml" />
+    <Content Include="bin\TimesheetSystem.dll" />
+    <Content Include="bin\TimesheetSystem.dll.config" />
+    <Content Include="bin\TimesheetSystem.pdb" />
+    <Content Include="bin\WebGrease.dll" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\custom_style.css">
@@ -226,7 +262,9 @@
     <Content Include="Content\custom_style.css.map">
       <DependentUpon>custom_style.css</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\timesheet.mikronlicud.co.uk - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\custom-script.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -238,7 +276,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -254,7 +294,6 @@
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
@@ -276,6 +315,7 @@
     <Content Include="Views\TimeLogs\Delete.cshtml" />
     <Content Include="Views\TimeLogs\Edit.cshtml" />
     <Content Include="Views\TimeLogs\Index.cshtml" />
+    <Content Include="Views\Tasks\TasksPartialView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -288,23 +328,11 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201501270735226_timesheet_migration_v1.resx">
-      <DependentUpon>201501270735226_timesheet_migration_v1.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201502072211308_timesheet_database_v1.resx">
+      <DependentUpon>201502072211308_timesheet_database_v1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501270739166_timesheet_migration_v2.resx">
-      <DependentUpon>201501270739166_timesheet_migration_v2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501311733409_timesheet_migration_v21.resx">
-      <DependentUpon>201501311733409_timesheet_migration_v21.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501311820058_timesheet_migration_v3.resx">
-      <DependentUpon>201501311820058_timesheet_migration_v3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201501312119582_timesheet_database_v4.resx">
-      <DependentUpon>201501312119582_timesheet_database_v4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201502070008576_timesheet_database_v5.resx">
-      <DependentUpon>201502070008576_timesheet_database_v5.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201502100006405_timesheet-database-v2.resx">
+      <DependentUpon>201502100006405_timesheet-database-v2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

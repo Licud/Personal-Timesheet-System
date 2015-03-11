@@ -1,0 +1,56 @@
+﻿@model IEnumerable<TimesheetSystem.DAL.Models.Tasks>
+
+<div class="table-responsive">
+
+    <table class="table table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SingleOrDefault().TasksName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SingleOrDefault().TasksStatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SingleOrDefault().TaskType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SingleOrDefault().TaskStartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SingleOrDefault().EstimatedTaskDateEnd)
+            </th>
+            <th>
+                Options
+            </th>
+        </tr>
+
+
+        @foreach (var task in Model)
+        {
+            <tr id="row-@task.TasksId">
+                <td>
+                    @Html.ActionLink(task.TasksName, "Index", "TimeLogs", new { id = task.TasksId }, null)
+                </td>
+                <td id="status-@task.TasksId">
+                    @Html.DisplayFor(modelItem => task.TasksStatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => task.TaskType)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => task.TaskStartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => task.EstimatedTaskDateEnd)
+                </td>
+                <td>
+                    <a href="#" class="change" data-type="1" data-id="@task.TasksId">Status</a> |
+                    @Html.ActionLink("Add Log", "Create", "TimeLogs", new { id = task.TasksId }, null) |
+                    @Html.ActionLink("Edit", "Edit", new { id = task.TasksId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = task.TasksId })
+                </td>
+            </tr>
+        }
+    </table>
+
+</div>

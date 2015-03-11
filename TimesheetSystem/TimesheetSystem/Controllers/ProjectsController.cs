@@ -37,8 +37,8 @@ namespace TimesheetSystem.Controllers
         {
             if (ModelState.IsValid)
             {
-                project.EstimatedDuration = project.EstimatedProjectDateEnd.Subtract(project.ProjectDateStarted).Days;
-                project.TotalDuration = DateTime.Now.Subtract(project.ProjectDateStarted).Days;
+                project.EstimatedDuration = project.EstimatedProjectDateEnd.Subtract(project.ProjectDateStarted).Days + 1;
+                project.TotalDuration = DateTime.Now.Subtract(project.ProjectDateStarted).Days + 1;
                 project.ProjectStatus = "Ongoing";
 
                 repositories.ProjectRepository.CreateProject(project);
@@ -73,6 +73,8 @@ namespace TimesheetSystem.Controllers
         {
             if (ModelState.IsValid)
             {
+                project.EstimatedDuration = project.EstimatedProjectDateEnd.Subtract(project.ProjectDateStarted).Days + 1;
+                project.TotalDuration = DateTime.Now.Subtract(project.ProjectDateStarted).Days + 1;
                 repositories.ProjectRepository.UpdateProject(project);
                 repositories.SaveChanges();
                 return RedirectToAction("Index");
@@ -103,6 +105,25 @@ namespace TimesheetSystem.Controllers
             repositories.ProjectRepository.RemoveProject(id);
             repositories.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public JsonResult UpdateStatus(int id)
+        {
+            Project project = repositories.ProjectRepository.GetProject(id);
+            if (project.ProjectStatus == "Ongoing")
+            {
+                project.ProjectStatus = "Finished";
+            }
+            else
+            {
+                project.ProjectStatus = "Ongoing";
+            }
+
+            repositories.SaveChanges();
+            var result = new { identifier = project.ProjectId, newStatus = project.ProjectStatus };
+
+            return Json(result);
         }
 
         protected override void Dispose(bool disposing)

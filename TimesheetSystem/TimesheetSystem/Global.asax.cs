@@ -17,7 +17,7 @@ namespace TimesheetSystem
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            UpdateDates.UpdateDatabase();
+            UpdateDatabase.UpdateDates();
         }
     }
 }

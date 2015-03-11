@@ -19,7 +19,7 @@ namespace TimesheetSystem.DAL.Models
         public DateTime TimeLogDate { get; set; }
 
         [Display(Name = "Work Duration")]
-        public int DurationWorked { get; set; }
+        public double DurationWorked { get; set; }
 
         public int TasksId { get; set; }
 
